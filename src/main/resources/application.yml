@@ -2,7 +2,7 @@ server:
   port: 9004
 spring:
   application:
-    name: king-excel
+    name: excel
     # 数据源配置
   datasource:
     url: jdbc:mysql://192.168.100.204:3306/excel?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&tinyInt1isBit=true&allowPublicKeyRetrieval=true
@@ -22,7 +22,7 @@ mybatis-plus:
   # 如果是放在resource目录 classpath:/mapper/*Mapper.xml
   mapper-locations: classpath:/mapper/*Mapper.xml
   #MyBaits 别名包扫描路径，通过该属性可以给包中的类注册别名，注册后在 Mapper 对应的 XML 文件中可以直接使用类名，而不用使用全限定的类名（即 XML 中调用的时候不用包含包名）。
-  typeAliasesPackage: com.wanniwa.king.excel.entity
+  typeAliasesPackage: com.example.excel.model
   global-config:
     db-config:
       #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:分布式id生成算法SnowFlake;
