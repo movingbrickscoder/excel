@@ -1,0 +1,48 @@
+server:
+  port: 9004
+spring:
+  application:
+    name: king-excel
+    # 数据源配置
+  datasource:
+    url: jdbc:mysql://192.168.100.204:3306/excel?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&tinyInt1isBit=true&allowPublicKeyRetrieval=true
+    username: root
+    password: dev4@123
+    driver-class-name:  com.mysql.cj.jdbc.Driver
+  #    hikari:
+  #      connectionTimeout: 60000
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+
+mybatis-plus:
+  # 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
+  # 如果是放在resource目录 classpath:/mapper/*Mapper.xml
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  #MyBaits 别名包扫描路径，通过该属性可以给包中的类注册别名，注册后在 Mapper 对应的 XML 文件中可以直接使用类名，而不用使用全限定的类名（即 XML 中调用的时候不用包含包名）。
+  typeAliasesPackage: com.wanniwa.king.excel.entity
+  global-config:
+    db-config:
+      #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:分布式id生成算法SnowFlake;
+      id-type: AUTO
+      #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+      field-strategy: NOT_NULL
+      #驼峰下划线转换
+      table-underline: true
+      # 逻辑已删除值(默认为 1)
+      logic-delete-value: 1
+      # 逻辑未删除值(默认为 0)
+      logic-not-delete-value: 0
+  configuration:
+    #配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId）
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    #配置JdbcTypeForNull, oracle数据库必须配置
+    jdbc-type-for-null: 'null'
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
