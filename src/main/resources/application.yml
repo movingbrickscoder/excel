@@ -3,7 +3,7 @@ server:
 spring:
   application:
     name: excel
-    # Êı¾İÔ´ÅäÖÃ
+    # æ•°æ®æºé…ç½®
   datasource:
     url: jdbc:mysql://192.168.100.204:3306/excel?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&tinyInt1isBit=true&allowPublicKeyRetrieval=true
     username: root
@@ -18,29 +18,29 @@ spring:
       enabled: true
 
 mybatis-plus:
-  # Èç¹ûÊÇ·ÅÔÚsrc/main/javaÄ¿Â¼ÏÂ classpath:/com/yourpackage/*/mapper/*Mapper.xml
-  # Èç¹ûÊÇ·ÅÔÚresourceÄ¿Â¼ classpath:/mapper/*Mapper.xml
+  # å¦‚æœæ˜¯æ”¾åœ¨src/main/javaç›®å½•ä¸‹ classpath:/com/yourpackage/*/mapper/*Mapper.xml
+  # å¦‚æœæ˜¯æ”¾åœ¨resourceç›®å½• classpath:/mapper/*Mapper.xml
   mapper-locations: classpath:/mapper/*Mapper.xml
-  #MyBaits ±ğÃû°üÉ¨ÃèÂ·¾¶£¬Í¨¹ı¸ÃÊôĞÔ¿ÉÒÔ¸ø°üÖĞµÄÀà×¢²á±ğÃû£¬×¢²áºóÔÚ Mapper ¶ÔÓ¦µÄ XML ÎÄ¼şÖĞ¿ÉÒÔÖ±½ÓÊ¹ÓÃÀàÃû£¬¶ø²»ÓÃÊ¹ÓÃÈ«ÏŞ¶¨µÄÀàÃû£¨¼´ XML ÖĞµ÷ÓÃµÄÊ±ºò²»ÓÃ°üº¬°üÃû£©¡£
+  #MyBaits åˆ«ååŒ…æ‰«æè·¯å¾„ï¼Œé€šè¿‡è¯¥å±æ€§å¯ä»¥ç»™åŒ…ä¸­çš„ç±»æ³¨å†Œåˆ«åï¼Œæ³¨å†Œååœ¨ Mapper å¯¹åº”çš„ XML æ–‡ä»¶ä¸­å¯ä»¥ç›´æ¥ä½¿ç”¨ç±»åï¼Œè€Œä¸ç”¨ä½¿ç”¨å…¨é™å®šçš„ç±»åï¼ˆå³ XML ä¸­è°ƒç”¨çš„æ—¶å€™ä¸ç”¨åŒ…å«åŒ…åï¼‰ã€‚
   typeAliasesPackage: com.example.excel.model
   global-config:
     db-config:
-      #Ö÷¼üÀàĞÍ  0:"Êı¾İ¿âID×ÔÔö", 1:"ÓÃ»§ÊäÈëID",2:"È«¾ÖÎ¨Ò»ID (Êı×ÖÀàĞÍÎ¨Ò»ID)", 3:·Ö²¼Ê½idÉú³ÉËã·¨SnowFlake;
+      #ä¸»é”®ç±»å‹  0:"æ•°æ®åº“IDè‡ªå¢", 1:"ç”¨æˆ·è¾“å…¥ID",2:"å…¨å±€å”¯ä¸€ID (æ•°å­—ç±»å‹å”¯ä¸€ID)", 3:åˆ†å¸ƒå¼idç”Ÿæˆç®—æ³•SnowFlake;
       id-type: AUTO
-      #×Ö¶Î²ßÂÔ 0:"ºöÂÔÅĞ¶Ï",1:"·Ç NULL ÅĞ¶Ï"),2:"·Ç¿ÕÅĞ¶Ï"
+      #å­—æ®µç­–ç•¥ 0:"å¿½ç•¥åˆ¤æ–­",1:"é NULL åˆ¤æ–­"),2:"éç©ºåˆ¤æ–­"
       field-strategy: NOT_NULL
-      #ÍÕ·åÏÂ»®Ïß×ª»»
+      #é©¼å³°ä¸‹åˆ’çº¿è½¬æ¢
       table-underline: true
-      # Âß¼­ÒÑÉ¾³ıÖµ(Ä¬ÈÏÎª 1)
+      # é€»è¾‘å·²åˆ é™¤å€¼(é»˜è®¤ä¸º 1)
       logic-delete-value: 1
-      # Âß¼­Î´É¾³ıÖµ(Ä¬ÈÏÎª 0)
+      # é€»è¾‘æœªåˆ é™¤å€¼(é»˜è®¤ä¸º 0)
       logic-not-delete-value: 0
   configuration:
-    #ÅäÖÃ·µ»ØÊı¾İ¿â(columnÏÂ»®ÏßÃüÃû&&·µ»ØjavaÊµÌåÊÇÍÕ·åÃüÃû)£¬×Ô¶¯Æ¥ÅäÎŞĞèas£¨Ã»¿ªÆôÕâ¸ö£¬SQLĞèÒªĞ´as£º select user_id as userId£©
+    #é…ç½®è¿”å›æ•°æ®åº“(columnä¸‹åˆ’çº¿å‘½å&&è¿”å›javaå®ä½“æ˜¯é©¼å³°å‘½å)ï¼Œè‡ªåŠ¨åŒ¹é…æ— éœ€asï¼ˆæ²¡å¼€å¯è¿™ä¸ªï¼ŒSQLéœ€è¦å†™asï¼š select user_id as userIdï¼‰
     map-underscore-to-camel-case: true
     cache-enabled: false
     call-setters-on-nulls: true
-    #ÅäÖÃJdbcTypeForNull, oracleÊı¾İ¿â±ØĞëÅäÖÃ
+    #é…ç½®JdbcTypeForNull, oracleæ•°æ®åº“å¿…é¡»é…ç½®
     jdbc-type-for-null: 'null'
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
