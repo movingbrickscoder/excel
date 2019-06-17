@@ -29,7 +29,7 @@ public class ImportController {
 
     @RequestMapping("/import")
     public void importExcel(@RequestParam("file") MultipartFile file){
-        Workbook workBook = null;
+        Workbook workBook;
         try {
             //获取多个sheet
             XSSFWorkbook workbook=new XSSFWorkbook(file.getInputStream());
