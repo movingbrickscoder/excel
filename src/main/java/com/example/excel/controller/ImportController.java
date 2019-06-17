@@ -5,28 +5,21 @@ import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
-import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
 import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import cn.afterturn.easypoi.excel.entity.result.ExcelImportResult;
-import cn.afterturn.easypoi.excel.export.ExcelExportService;
 import com.example.excel.model.ExportMoreView;
 import com.example.excel.model.ExportView;
 import com.example.excel.model.UserInfo;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Slf4j
@@ -35,7 +28,7 @@ import java.util.*;
 public class ImportController {
 
     @RequestMapping("/import")
-    public void importExcel(@RequestParam("file") MultipartFile file,HttpServletResponse response){
+    public void importExcel(@RequestParam("file") MultipartFile file){
         Workbook workBook = null;
         try {
             //获取多个sheet
@@ -73,12 +66,11 @@ public class ImportController {
             for(ExportView view:exportMoreView.getMoreViewList()){
                 Map<String, Object> valueMap= Maps.newHashMap();
                 valueMap.put(NormalExcelConstants.DATA_LIST,view.getDataList());
-                System.out.println("xxx："+view.getCls());
                 valueMap.put(NormalExcelConstants.CLASS,UserInfo.class);
-                valueMap.put(NormalExcelConstants.EASYPOI_EXCEL_VIEW,view.getExportParams());
+                valueMap.put("title",view.getExportParams());
                 exportParamList.add(valueMap);
             }
-            FileOutputStream fos = new FileOutputStream("D:/baseModetest.xlsx");
+            FileOutputStream fos = new FileOutputStream("D:/baseModetest.xls");
             workBook = ExcelExportUtil.exportExcel(exportParamList, ExcelType.HSSF);
             workBook.write(fos);
             fos.close();

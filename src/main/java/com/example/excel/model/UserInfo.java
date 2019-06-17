@@ -1,13 +1,14 @@
 package com.example.excel.model;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
+import cn.afterturn.easypoi.handler.inter.IExcelModel;
 import lombok.Data;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Data
-public class UserInfo {
+public class UserInfo implements IExcelModel {
 
     @Excel(name = "姓名")
     @NotNull(message = "姓名不能为空")
@@ -32,6 +33,17 @@ public class UserInfo {
     @Size(max = 200,message = "长度不能超过200")
     private String address;
 
+    @Excel(name = "错误信息")
+    private String errorMsg;
 
 
+    @Override
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    @Override
+    public void setErrorMsg(String s) {
+        this.errorMsg = s;
+    }
 }
